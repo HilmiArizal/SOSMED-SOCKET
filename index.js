@@ -53,7 +53,7 @@ app.get('/', (req, res) => {
     res.send(`SERVER IS RUNNING IN PORT ${PORT}`);
 });
 
-app.listen(PORT, () => console.log(`SERVER SOCKET RUNNING IN PORT ${PORT}`));
+app.listen(() => console.log(`SERVER SOCKET RUNNING IN PORT ${PORT}`));
 
 // app.use(router);
 
