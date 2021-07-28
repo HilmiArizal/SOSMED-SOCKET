@@ -1,11 +1,13 @@
-const PORT = process.env.PORT || 8900;
+const PORT = process.env.PORT || 1000;
 
 const express = require("express");
 const io = require('socket.io');
 const cors = require("cors");
+const http = require("http");
 
 const app = express();
-const socketServer = io(PORT, {cors: {origin: 'https://hilmiarizal.github.io/SOSMED'}});
+const server = http.createServer(app);
+const socketServer = io(PORT, {cors: {origin: 'http://localhost:3000'}});
 
 let users = [];
 
@@ -49,4 +51,8 @@ app.use(cors());
 
 app.get('/', (req, res) => {
     res.send(`SERVER IS RUNNING IN PORT ${PORT}`);
-});
+})
+
+// app.use(router);
+
+// server.listen(PORT, () => console.log(`SERVER SOCKET RUNNING IN PORT ${PORT}`));
