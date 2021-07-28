@@ -1,4 +1,4 @@
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8900;
 
 const express = require("express");
 const io = require('socket.io');
@@ -7,7 +7,7 @@ const http = require("http");
 
 const app = express();
 const server = http.createServer(app);
-const socketServer = io(8900, {cors: {origin: 'https://hilmiarizal.github.io/SOSMED'}});
+const socketServer = io(server, {cors: {origin: 'http://localhost:3000'}});
 
 let users = [];
 
