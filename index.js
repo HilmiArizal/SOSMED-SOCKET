@@ -1,12 +1,14 @@
 const PORT = process.env.PORT || 8900;
 
-let io = require('socket.io');
+const express = require("express");
+const io = require('socket.io');
 const cors = require("cors");
 const http = require("http");
 
-const app = require("express")();
+const app = express();
 const server = http.createServer(app);
 const socketServer = io(server);
+const router = express.Router();
 
 let users = [];
 
@@ -48,7 +50,7 @@ socketServer.on("connection", (socket) => {
 
 app.use(cors());
 
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
     res.send(`SERVER IS RUNNING IN PORT ${PORT}`);
 })
 
