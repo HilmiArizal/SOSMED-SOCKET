@@ -5,7 +5,7 @@ const io = require('socket.io');
 const cors = require("cors");
 
 const app = express();
-const socketServer = io(8900, {cors: {origin: 'https://hilmiarizal.github.io/SOSMED'}});
+const socketServer = io(PORT, {cors: {origin: 'https://hilmiarizal.github.io/SOSMED'}});
 
 let users = [];
 
