@@ -3,12 +3,9 @@ const PORT = process.env.PORT || 8900;
 const express = require("express");
 const io = require('socket.io');
 const cors = require("cors");
-const http = require("http");
 
 const app = express();
-const server = http.createServer(app);
-const socketServer = io(server);
-const router = express.Router();
+const socketServer = io(8900, {cors: {origin: 'https://hilmiarizal.github.io/SOSMED'}});
 
 let users = [];
 
@@ -50,10 +47,6 @@ socketServer.on("connection", (socket) => {
 
 app.use(cors());
 
-router.get('/', (req, res) => {
+app.get('/', (req, res) => {
     res.send(`SERVER IS RUNNING IN PORT ${PORT}`);
-})
-
-app.use(router);
-
-server.listen(PORT, () => console.log(`SERVER SOCKET RUNNING IN PORT ${PORT}`));
+});
