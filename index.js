@@ -7,8 +7,8 @@ const http = require("http");
 
 const app = express();
 const server = http.createServer(app);
-// const socketServer = io(server, {cors: {origin: 'https://hilmiarizal.github.io/SOSMED'}});
-const socketServer = io(server);
+const socketServer = io(server, {cors: {origin: 'https://hilmiarizal.github.io/SOSMED'}});
+// const socketServer = io(server, {cors: {origin: 'http://192.168.1.5:3000'}});
 
 let users = [];
 
@@ -26,16 +26,16 @@ const getUsers = (userId) => {
 
 socketServer.on("connection", (socket) => {
     console.log('A User Connected');
-
+    
     socket.on("addUser", (userId) => {
         addUsers(userId, socket.id);
-        socketServer.emit("getUsers", users);
+        socketServer.emit("getUser", users);
     });
-
+    
     // SEND MESSAGE AND GET MESSAGE
     socket.on("sendMessage", ({ senderId, receiverId, text }) => {
         const user = getUsers(receiverId);
-        socketServer.to(user.socketId).emit("getMessage", {
+        socketServer.to(user?.socketId).emit("getMessage", {
             senderId, text,
         });
     })
@@ -54,4 +54,4 @@ app.get('/', (req, res) => {
     res.send(`SERVER IS RUNNING IN PORT ${PORT}`);
 });
 
-server.listen(PORT, () => console.log(`SERVER SOCKET RUNNING IN PORT ${PORT}`));
+server.listen(PORT, '0.0.0.0', () => console.log(`SERVER SOCKET RUNNING IN PORT ${PORT}`));
