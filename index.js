@@ -7,7 +7,8 @@ const http = require("http");
 
 const app = express();
 const server = http.createServer(app);
-const socketServer = io(server, {cors: {origin: 'https://hilmiarizal.github.io/SOSMED'}});
+// const socketServer = io(server, {cors: {origin: 'https://hilmiarizal.github.io/SOSMED'}});
+const socketServer = io(server);
 
 let users = [];
 
@@ -47,7 +48,7 @@ socketServer.on("connection", (socket) => {
 });
 
 
-app.use(cors());
+// app.use(cors());
 
 app.get('/', (req, res) => {
     res.send(`SERVER IS RUNNING IN PORT ${PORT}`);
