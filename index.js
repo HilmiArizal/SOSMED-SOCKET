@@ -7,8 +7,8 @@ const http = require("http");
 
 const app = express();
 const server = http.createServer(app);
-const socketServer = io(server, {cors: {origin: 'https://hilmiarizal.github.io/SOSMED'}});
-// const socketServer = io(server, {cors: {origin: 'http://192.168.1.5:3000'}});
+// const socketServer = io(server, {cors: {origin: 'https://hilmiarizal.github.io/SOSMED'}});
+const socketServer = io(server, {cors: {origin: 'http://192.168.1.5:3000'}});
 
 let users = [];
 
